@@ -1,0 +1,18 @@
+local RunService = game:GetService("RunService")
+
+local player = game.Players.LocalPlayer
+local char = player.Character
+local hum = char.Humanoid
+
+local Stand = script.Parent
+
+local LeanAnim = Stand.AnimationController:LoadAnimation(script:WaitForChild("Lean"))
+LeanAnim:Play()
+
+RunService.Heartbeat:Connect(function()
+	if hum.MoveDirection ~= Vector3.new(0,0,0) then
+		LeanAnim:AdjustWeight(1.001)
+	else
+		LeanAnim:AdjustWeight(0)
+	end
+end)
